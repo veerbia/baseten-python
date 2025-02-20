@@ -1,0 +1,38 @@
+speakeasyVersion: 1.496.0
+sources:
+    Baseten Transcribe Audio API:
+        sourceNamespace: baseten-transcribe-audio-api
+        sourceRevisionDigest: sha256:8da31abe7757e4de29b6d44c4f5c348983b18c0a8d04d25eb4be98585deeff12
+        sourceBlobDigest: sha256:83519122e7c580f57fd1ebdff6398c472c7a7fa42f56438afb4e5f3480be1151
+        tags:
+            - latest
+            - "1.0"
+targets:
+    baseten:
+        source: Baseten Transcribe Audio API
+        sourceNamespace: baseten-transcribe-audio-api
+        sourceRevisionDigest: sha256:8da31abe7757e4de29b6d44c4f5c348983b18c0a8d04d25eb4be98585deeff12
+        sourceBlobDigest: sha256:83519122e7c580f57fd1ebdff6398c472c7a7fa42f56438afb4e5f3480be1151
+        codeSamplesNamespace: baseten-transcribe-audio-api-python-code-samples
+        codeSamplesRevisionDigest: sha256:fead9b7604263637aa16c487d6a183e5b7dd7c03e3149e237a93bedb8bda0ad3
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Baseten Transcribe Audio API:
+            inputs:
+                - location: ../openapi.yaml
+            overlays:
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            registry:
+                location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api
+    targets:
+        baseten:
+            target: python
+            source: Baseten Transcribe Audio API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api-python-code-samples
+                labelOverride:
+                    fixedValue: Python (SDK)
+                blocking: false

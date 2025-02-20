@@ -1,0 +1,99 @@
+lockVersion: 2.0.0
+id: 8b874aab-12ed-4a0e-8e54-aa303b18d1e4
+management:
+  docChecksum: 556c2f1652d9f28a8661f2fe5b042177
+  docVersion: "1.0"
+  speakeasyVersion: 1.496.0
+  generationVersion: 2.517.3
+  releaseVersion: 0.1.2
+  configChecksum: 737a142e55ca9cdfb703279e23aaad18
+features:
+  python:
+    additionalDependencies: 1.0.0
+    constsAndDefaults: 1.0.5
+    core: 5.11.0
+    defaultEnabledRetries: 0.2.0
+    devContainers: 3.0.0
+    envVarSecurityUsage: 0.3.2
+    flatRequests: 1.0.1
+    globalSecurity: 3.0.3
+    globalSecurityCallbacks: 1.0.0
+    globalSecurityFlattening: 1.0.0
+    globalServerURLs: 3.1.0
+    groups: 3.0.0
+    methodArguments: 1.0.2
+    nameOverrides: 3.0.1
+    nullables: 1.0.1
+    responseFormat: 1.0.1
+    retries: 3.0.2
+    sdkHooks: 1.0.1
+    unions: 3.0.4
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - .python-version
+  - .vscode/settings.json
+  - USAGE.md
+  - docs/models/asroptions.md
+  - docs/models/audio.md
+  - docs/models/one.md
+  - docs/models/security.md
+  - docs/models/segments.md
+  - docs/models/three.md
+  - docs/models/transcribeaudioaudiosresponsebody.md
+  - docs/models/transcribeaudiorequestbody.md
+  - docs/models/transcribeaudioresponse.md
+  - docs/models/transcribeaudioresponsebody.md
+  - docs/models/two.md
+  - docs/models/utils/retryconfig.md
+  - docs/models/whisperinput.md
+  - docs/models/whisperparams.md
+  - docs/sdks/audios/README.md
+  - docs/sdks/baseten/README.md
+  - poetry.toml
+  - py.typed
+  - pylintrc
+  - pyproject.toml
+  - scripts/prepare-readme.py
+  - scripts/publish.sh
+  - src/baseten/__init__.py
+  - src/baseten/_hooks/__init__.py
+  - src/baseten/_hooks/sdkhooks.py
+  - src/baseten/_hooks/types.py
+  - src/baseten/_version.py
+  - src/baseten/audios.py
+  - src/baseten/basesdk.py
+  - src/baseten/httpclient.py
+  - src/baseten/models/__init__.py
+  - src/baseten/models/apierror.py
+  - src/baseten/models/security.py
+  - src/baseten/models/transcribeaudioop.py
+  - src/baseten/py.typed
+  - src/baseten/sdk.py
+  - src/baseten/sdkconfiguration.py
+  - src/baseten/types/__init__.py
+  - src/baseten/types/basemodel.py
+  - src/baseten/utils/__init__.py
+  - src/baseten/utils/annotations.py
+  - src/baseten/utils/enums.py
+  - src/baseten/utils/eventstreaming.py
+  - src/baseten/utils/forms.py
+  - src/baseten/utils/headers.py
+  - src/baseten/utils/logger.py
+  - src/baseten/utils/metadata.py
+  - src/baseten/utils/queryparams.py
+  - src/baseten/utils/requestbodies.py
+  - src/baseten/utils/retries.py
+  - src/baseten/utils/security.py
+  - src/baseten/utils/serializers.py
+  - src/baseten/utils/url.py
+  - src/baseten/utils/values.py
+examples:
+  transcribeAudio:
+    speakeasy-default-transcribe-audio:
+      requestBody:
+        application/json: {"whisper_input": {"audio": {"audio_b64": "<value>"}}}
+examplesVersion: 1.0.0
+generatedTests: {}

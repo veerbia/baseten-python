@@ -1,0 +1,35 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.3
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/predict"]["post"]
+    update:
+      x-speakeasy-group: audios
+      x-speakeasy-name-override: transcribe
+    x-speakeasy-metadata:
+      after: sdk.audios.transcribe()
+      before: sdk.<no_group>.transcribeAudio()
+      created_at: 1740008177564
+      reviewed_at: 1740008188174
+      type: method-name
+  - target: $
+    update:
+      x-speakeasy-retries:
+        strategy: backoff
+        backoff:
+          initialInterval: 500
+          maxInterval: 60000
+          maxElapsedTime: 3600000
+          exponent: 1.5
+        statusCodes:
+          - 5XX
+        retryConnectionErrors: true
+    x-speakeasy-metadata:
+      created_at: 1740083158798
+      type: user-edit

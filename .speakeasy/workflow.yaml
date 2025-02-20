@@ -1,0 +1,20 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Baseten Transcribe Audio API:
+        inputs:
+            - location: ../openapi.yaml
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api
+targets:
+    baseten:
+        target: python
+        source: Baseten Transcribe Audio API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api-python-code-samples
+            labelOverride:
+                fixedValue: Python (SDK)
+            blocking: false
