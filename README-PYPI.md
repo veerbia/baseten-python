@@ -23,21 +23,21 @@ Baseten Transcribe Audio API: API for transcribing audio using the Whisper model
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [baseten](#baseten)
-  * [SDK Installation](#sdk-installation)
-  * [IDE Support](#ide-support)
-  * [SDK Example Usage](#sdk-example-usage)
-  * [Authentication](#authentication)
-  * [Available Resources and Operations](#available-resources-and-operations)
-  * [Retries](#retries)
-  * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
-  * [Custom HTTP Client](#custom-http-client)
-  * [Resource Management](#resource-management)
-  * [Debugging](#debugging)
-* [Development](#development)
-  * [Maturity](#maturity)
-  * [Contributions](#contributions)
+* [baseten](https://github.com/veerbia/baseten-python/blob/master/#baseten)
+  * [SDK Installation](https://github.com/veerbia/baseten-python/blob/master/#sdk-installation)
+  * [IDE Support](https://github.com/veerbia/baseten-python/blob/master/#ide-support)
+  * [SDK Example Usage](https://github.com/veerbia/baseten-python/blob/master/#sdk-example-usage)
+  * [Authentication](https://github.com/veerbia/baseten-python/blob/master/#authentication)
+  * [Available Resources and Operations](https://github.com/veerbia/baseten-python/blob/master/#available-resources-and-operations)
+  * [Retries](https://github.com/veerbia/baseten-python/blob/master/#retries)
+  * [Error Handling](https://github.com/veerbia/baseten-python/blob/master/#error-handling)
+  * [Server Selection](https://github.com/veerbia/baseten-python/blob/master/#server-selection)
+  * [Custom HTTP Client](https://github.com/veerbia/baseten-python/blob/master/#custom-http-client)
+  * [Resource Management](https://github.com/veerbia/baseten-python/blob/master/#resource-management)
+  * [Debugging](https://github.com/veerbia/baseten-python/blob/master/#debugging)
+* [Development](https://github.com/veerbia/baseten-python/blob/master/#development)
+  * [Maturity](https://github.com/veerbia/baseten-python/blob/master/#maturity)
+  * [Contributions](https://github.com/veerbia/baseten-python/blob/master/#contributions)
 
 <!-- End Table of Contents [toc] -->
 
@@ -202,9 +202,9 @@ with Baseten(
 <details open>
 <summary>Available methods</summary>
 
-### [audios](docs/sdks/audios/README.md)
+### [audios](https://github.com/veerbia/baseten-python/blob/master/docs/sdks/audios/README.md)
 
-* [transcribe](docs/sdks/audios/README.md#transcribe) - Transcribe Audio
+* [transcribe](https://github.com/veerbia/baseten-python/blob/master/docs/sdks/audios/README.md#transcribe) - Transcribe Audio
 
 
 </details>
