@@ -12,10 +12,12 @@ targets:
     baseten:
         target: python
         source: Baseten Transcribe Audio API
+        publish:
+            pypi:
+                token: $pypi_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api-python-code-samples
             labelOverride:
                 fixedValue: Python (SDK)
             blocking: false
-
