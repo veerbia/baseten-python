@@ -1,17 +1,19 @@
 lockVersion: 2.0.0
 id: 8b874aab-12ed-4a0e-8e54-aa303b18d1e4
 management:
-  docChecksum: 556c2f1652d9f28a8661f2fe5b042177
+  docChecksum: cb39b41f6e6d3e2cc39714765798276a
   docVersion: "1.0"
-  speakeasyVersion: 1.496.0
-  generationVersion: 2.517.3
-  releaseVersion: 0.1.2
-  configChecksum: 737a142e55ca9cdfb703279e23aaad18
+  speakeasyVersion: 1.499.0
+  generationVersion: 2.520.0
+  releaseVersion: 0.2.0
+  configChecksum: 086d8863bd28667ce189aea3d9894acd
+  repoURL: https://github.com/veerbia/baseten-python.git
+  installationURL: https://github.com/veerbia/baseten-python.git
 features:
   python:
     additionalDependencies: 1.0.0
     constsAndDefaults: 1.0.5
-    core: 5.11.0
+    core: 5.12.0
     defaultEnabledRetries: 0.2.0
     devContainers: 3.0.0
     envVarSecurityUsage: 0.3.2
