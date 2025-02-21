@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: Baseten Transcribe Audio API
+  version: "1.0"
+  description: >
+    API for transcribing audio using the Whisper model. This endpoint calls the production deployment of your model. When using the API as a chain, please refer to the respective endpoint.
+servers:
+  - url: https://model-{model_id}.api.baseten.co/environments/production
+    description: Production environment for model deployments.
+    variables:
+      model_id:
+        default: YOUR_MODEL_ID
+        description: The ID of the model you want to call.
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 500 # 500 milliseconds
+    maxInterval: 60000   # 60 seconds
+    maxElapsedTime: 3600000  # 5 minutes
+    exponent: 1.5
+  statusCodes:
+    - 5XX
+  retryConnectionErrors: true
+paths:
+  /predict:
+    post:
+      summary: Transcribe Audio
+      description: >
+        Use this endpoint to transcribe audio. Provide your audio input (as a URL, Base64-encoded string, or raw bytes) along with optional parameters to control transcription behavior.
+      operationId: transcribeAudio
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        description: Payload containing the audio input and transcription parameters.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                whisper_input:
+                  type: object
+                  description: Object containing audio and related parameters.
+                  required:
+                    - audio
+                  properties:
+                    audio:
+                      type: object
+                      description: >
+                        Audio input options. Provide one of the following: - url: URL of the audio file. - audio_b64: Base64-encoded audio content. - audio_bytes: Raw audio bytes.
+                      oneOf:
+                        - required: ["url"]
+                          properties:
+                            url:
+                              type: string
+                              format: uri
+                        - required: ["audio_b64"]
+                          properties:
+                            audio_b64:
+                              type: string
+                        - required: ["audio_bytes"]
+                          properties:
+                            audio_bytes:
+                              type: string
+                              format: byte
+                    whisper_params:
+                      type: object
+                      description: Parameters for controlling Whisper’s behavior.
+                      properties:
+                        prompt:
+                          type: string
+                          description: Optional transcription prompt.
+                        audio_language:
+                          type: string
+                          description: >
+                            Language of the input audio. Set to "auto" for automatic detection.
+                          default: en
+                        language_detection_only:
+                          type: boolean
+                          description: >
+                            If true, only return the automatic language detection result without transcribing.
+                          default: false
+                        use_dynamic_preprocessing:
+                          type: boolean
+                          description: >
+                            Enables dynamic range compression to process audio with variable loudness.
+                          default: false
+                    asr_options:
+                      type: object
+                      description: Advanced settings for the ASR process.
+                      properties:
+                        beam_size:
+                          type: integer
+                          description: Beam search size for decoding. Supported up to 5.
+                          default: 1
+                        length_penalty:
+                          type: number
+                          description: >
+                            Length penalty applied to ASR output. Only applicable when beam_size > 1.
+                          default: 2.0
+              required:
+                - whisper_input
+      responses:
+        '200':
+          description: Successful transcription response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  language_code:
+                    type: string
+                    description: Detected language code.
+                  language_prob:
+                    type: number
+                    nullable: true
+                    description: Confidence score for language detection.
+                  segments:
+                    type: array
+                    description: List of transcribed segments.
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                          description: Transcribed text.
+                        log_prob:
+                          type: number
+                          description: Log probability of the transcription.
+                        start_time:
+                          type: number
+                          description: Start time (in seconds) of the segment.
+                        end_time:
+                          type: number
+                          description: End time (in seconds) of the segment.
+        default:
+          description: Unexpected error response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message.
+      x-speakeasy-group: audios
+      x-speakeasy-name-override: transcribe
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >
+        Your Baseten API key. Format with prefix 'Api-Key', e.g., "Authorization: Api-Key abcd1234.abcd1234".

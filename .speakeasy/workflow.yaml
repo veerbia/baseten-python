@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     Baseten Transcribe Audio API:
         inputs:
-            - location: ../openapi.yaml
+            - location: ./openapi.yaml
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
         registry:

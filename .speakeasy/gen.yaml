@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: /Users/veer/Developer/openapi.yaml
+    schemaPath: /Users/veer/Developer/baseten-python/openapi.yaml
   sdkClassName: Baseten
   maintainOpenAPIOrder: true
   usageSnippets:

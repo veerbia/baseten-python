@@ -11,4 +11,4 @@ python -m pip install --upgrade pip
 pip install -e .
 
 # Generate starter usage sample with speakeasy
-speakeasy generate usage -s /Users/veer/Developer/openapi.yaml -l python -o samples/root.py
+speakeasy generate usage -s /Users/veer/Developer/baseten-python/openapi.yaml -l python -o samples/root.py
