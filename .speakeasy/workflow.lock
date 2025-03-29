@@ -1,4 +1,4 @@
-speakeasyVersion: 1.499.0
+speakeasyVersion: 1.526.0
 sources:
     Baseten Transcribe Audio API:
         sourceNamespace: baseten-transcribe-audio-api
@@ -28,6 +28,9 @@ workflow:
         baseten:
             target: python
             source: Baseten Transcribe Audio API
+            publish:
+                pypi:
+                    token: $pypi_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/baseten-mnu/whisper/baseten-transcribe-audio-api-python-code-samples

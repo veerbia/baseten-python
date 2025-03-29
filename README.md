@@ -42,10 +42,6 @@ Baseten Transcribe Audio API: API for transcribing audio using the Whisper model
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to PyPI you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 > [!NOTE]
 > **Python version upgrade policy**
 >
@@ -58,7 +54,7 @@ The SDK can be installed with either *pip* or *poetry* package managers.
 *PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
-pip install git+https://github.com/veerbia/baseten-python.git
+pip install baseten
 ```
 
 ### Poetry
@@ -66,7 +62,7 @@ pip install git+https://github.com/veerbia/baseten-python.git
 *Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
 
 ```bash
-poetry add git+https://github.com/veerbia/baseten-python.git
+poetry add baseten
 ```
 
 ### Shell and script usage with `uv`
@@ -121,6 +117,7 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 from baseten import Baseten
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
@@ -145,6 +142,7 @@ from baseten import Baseten
 import os
 
 async def main():
+
     async with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
@@ -177,6 +175,7 @@ To authenticate with the API the `api_key_auth` parameter must be set when initi
 ```python
 from baseten import Baseten
 import os
+
 
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -219,6 +218,7 @@ from baseten import Baseten
 from baseten.utils import BackoffStrategy, RetryConfig
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
@@ -240,6 +240,7 @@ If you'd like to override the default retry strategy for all operations that sup
 from baseten import Baseten
 from baseten.utils import BackoffStrategy, RetryConfig
 import os
+
 
 with Baseten(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
@@ -284,6 +285,7 @@ When custom error responses are specified for an operation, the SDK may also rai
 from baseten import Baseten, models
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
@@ -322,6 +324,7 @@ The default server `https://model-{model_id}.api.baseten.co/environments/product
 from baseten import Baseten
 import os
 
+
 with Baseten(
     model_id="<id>"
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -344,6 +347,7 @@ The default server can be overridden globally by passing a URL to the `server_ur
 ```python
 from baseten import Baseten
 import os
+
 
 with Baseten(
     server_url="https://model-YOUR_MODEL_ID.api.baseten.co/environments/production",
@@ -454,6 +458,7 @@ The `Baseten` class implements the context manager protocol and registers a fina
 from baseten import Baseten
 import os
 def main():
+
     with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
@@ -462,6 +467,7 @@ def main():
 
 # Or when using async:
 async def amain():
+
     async with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:

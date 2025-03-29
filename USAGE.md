@@ -4,6 +4,7 @@
 from baseten import Baseten
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
@@ -28,6 +29,7 @@ from baseten import Baseten
 import os
 
 async def main():
+
     async with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
