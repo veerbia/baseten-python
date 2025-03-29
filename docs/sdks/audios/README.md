@@ -18,6 +18,7 @@ Use this endpoint to transcribe audio. Provide your audio input (as a URL, Base6
 from baseten import Baseten
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
