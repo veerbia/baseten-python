@@ -42,23 +42,27 @@ Baseten Transcribe Audio API: API for transcribing audio using the Whisper model
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to PyPI you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 > [!NOTE]
 > **Python version upgrade policy**
 >
 > Once a Python version reaches its [official end of life date](https://devguide.python.org/versions/), a 3-month grace period is provided for users to upgrade. Following this grace period, the minimum python version supported in the SDK will be updated.
 
-The SDK can be installed with either *pip* or *poetry* package managers.
+The SDK can be installed with *uv*, *pip*, or *poetry* package managers.
+
+### uv
+
+*uv* is a fast Python package installer and resolver, designed as a drop-in replacement for pip and pip-tools. It's recommended for its speed and modern Python tooling capabilities.
+
+```bash
+uv add baseten
+```
 
 ### PIP
 
 *PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
-pip install git+https://github.com/veerbia/baseten-python.git
+pip install baseten
 ```
 
 ### Poetry
@@ -66,7 +70,7 @@ pip install git+https://github.com/veerbia/baseten-python.git
 *Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
 
 ```bash
-poetry add git+https://github.com/veerbia/baseten-python.git
+poetry add baseten
 ```
 
 ### Shell and script usage with `uv`
@@ -82,7 +86,7 @@ It's also possible to write a standalone Python script without needing to set up
 ```python
 #!/usr/bin/env -S uv run --script
 # /// script
-# requires-python = ">=3.9"
+# requires-python = ">=3.10"
 # dependencies = [
 #     "baseten",
 # ]
@@ -121,13 +125,14 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 from baseten import Baseten
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
@@ -137,7 +142,8 @@ with Baseten(
 
 </br>
 
-The same SDK client can also be used to make asychronous requests by importing asyncio.
+The same SDK client can also be used to make asynchronous requests by importing asyncio.
+
 ```python
 # Asynchronous Example
 import asyncio
@@ -145,13 +151,14 @@ from baseten import Baseten
 import os
 
 async def main():
+
     async with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
 
         res = await b_client.audios.transcribe_async(whisper_input={
             "audio": {
-                "audio_b64": "<value>",
+                "url": "https://purple-cafe.net",
             },
         })
 
@@ -178,13 +185,14 @@ To authenticate with the API the `api_key_auth` parameter must be set when initi
 from baseten import Baseten
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
@@ -200,10 +208,9 @@ with Baseten(
 <details open>
 <summary>Available methods</summary>
 
-### [audios](docs/sdks/audios/README.md)
+### [Audios](docs/sdks/audios/README.md)
 
 * [transcribe](docs/sdks/audios/README.md#transcribe) - Transcribe Audio
-
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -219,13 +226,14 @@ from baseten import Baseten
 from baseten.utils import BackoffStrategy, RetryConfig
 import os
 
+
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     },
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
@@ -241,6 +249,7 @@ from baseten import Baseten
 from baseten.utils import BackoffStrategy, RetryConfig
 import os
 
+
 with Baseten(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -248,7 +257,7 @@ with Baseten(
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
@@ -261,28 +270,21 @@ with Baseten(
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
+[`BasetenError`](./src/baseten/models/basetenerror.py) is the base class for all HTTP error responses. It has the following properties:
 
-By default, an API error will raise a models.APIError exception, which has the following properties:
-
-| Property        | Type             | Description           |
-|-----------------|------------------|-----------------------|
-| `.status_code`  | *int*            | The HTTP status code  |
-| `.message`      | *str*            | The error message     |
-| `.raw_response` | *httpx.Response* | The raw HTTP response |
-| `.body`         | *str*            | The response content  |
-
-When custom error responses are specified for an operation, the SDK may also raise their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `transcribe_async` method may raise the following exceptions:
-
-| Error Type      | Status Code | Content Type |
-| --------------- | ----------- | ------------ |
-| models.APIError | 4XX, 5XX    | \*/\*        |
+| Property           | Type             | Description                                            |
+| ------------------ | ---------------- | ------------------------------------------------------ |
+| `err.message`      | `str`            | Error message                                          |
+| `err.status_code`  | `int`            | HTTP response status code eg `404`                     |
+| `err.headers`      | `httpx.Headers`  | HTTP response headers                                  |
+| `err.body`         | `str`            | HTTP body. Can be empty string if no body is returned. |
+| `err.raw_response` | `httpx.Response` | Raw HTTP response                                      |
 
 ### Example
-
 ```python
 from baseten import Baseten, models
 import os
+
 
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -292,17 +294,42 @@ with Baseten(
 
         res = b_client.audios.transcribe(whisper_input={
             "audio": {
-                "audio_b64": "<value>",
+                "url": "https://purple-cafe.net",
             },
         })
 
         # Handle response
         print(res)
 
-    except models.APIError as e:
-        # handle exception
-        raise(e)
+
+    except models.BasetenError as e:
+        # The base class for HTTP error responses
+        print(e.message)
+        print(e.status_code)
+        print(e.body)
+        print(e.headers)
+        print(e.raw_response)
+
 ```
+
+### Error Classes
+**Primary error:**
+* [`BasetenError`](./src/baseten/models/basetenerror.py): The base class for HTTP error responses.
+
+<details><summary>Less common errors (5)</summary>
+
+<br />
+
+**Network errors:**
+* [`httpx.RequestError`](https://www.python-httpx.org/exceptions/#httpx.RequestError): Base class for request errors.
+    * [`httpx.ConnectError`](https://www.python-httpx.org/exceptions/#httpx.ConnectError): HTTP client was unable to make a request to a server.
+    * [`httpx.TimeoutException`](https://www.python-httpx.org/exceptions/#httpx.TimeoutException): HTTP request timed out.
+
+
+**Inherit from [`BasetenError`](./src/baseten/models/basetenerror.py)**:
+* [`ResponseValidationError`](./src/baseten/models/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
+
+</details>
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -322,14 +349,16 @@ The default server `https://model-{model_id}.api.baseten.co/environments/product
 from baseten import Baseten
 import os
 
+
 with Baseten(
-    model_id="<id>"
+    server_idx=0,
+    model_id="YOUR_MODEL_ID",
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
 ) as b_client:
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
@@ -345,6 +374,7 @@ The default server can be overridden globally by passing a URL to the `server_ur
 from baseten import Baseten
 import os
 
+
 with Baseten(
     server_url="https://model-YOUR_MODEL_ID.api.baseten.co/environments/production",
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -352,7 +382,7 @@ with Baseten(
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
@@ -454,6 +484,7 @@ The `Baseten` class implements the context manager protocol and registers a fina
 from baseten import Baseten
 import os
 def main():
+
     with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
@@ -462,6 +493,7 @@ def main():
 
 # Or when using async:
 async def amain():
+
     async with Baseten(
         api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
     ) as b_client:
