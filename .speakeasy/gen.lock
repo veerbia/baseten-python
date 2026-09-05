@@ -3,33 +3,319 @@ id: 8b874aab-12ed-4a0e-8e54-aa303b18d1e4
 management:
   docChecksum: cb39b41f6e6d3e2cc39714765798276a
   docVersion: "1.0"
-  speakeasyVersion: 1.499.0
-  generationVersion: 2.520.0
-  releaseVersion: 0.2.0
-  configChecksum: 086d8863bd28667ce189aea3d9894acd
+  speakeasyVersion: 1.796.4
+  generationVersion: 2.935.1
+  releaseVersion: 0.3.0
+  configChecksum: aee3e4d7b31f52f80706f75fd6846e27
   repoURL: https://github.com/veerbia/baseten-python.git
   installationURL: https://github.com/veerbia/baseten-python.git
+  published: true
+persistentEdits:
+  generation_id: 4ebc4dd9-5eec-48ff-8156-ada8ff6d681e
+  pristine_commit_hash: f13196b00024a959117c53a4aed30901d087a5f1
+  pristine_tree_hash: 26ecb44efc7960037cc9b6f676bb06340e4d5107
 features:
   python:
-    additionalDependencies: 1.0.0
-    constsAndDefaults: 1.0.5
-    core: 5.12.0
+    additionalDependencies: 1.1.0
+    constsAndDefaults: 1.0.7
+    core: 6.1.2
     defaultEnabledRetries: 0.2.0
     devContainers: 3.0.0
-    envVarSecurityUsage: 0.3.2
+    envVarSecurityUsage: 0.3.3
     flatRequests: 1.0.1
-    globalSecurity: 3.0.3
+    globalSecurity: 3.0.7
     globalSecurityCallbacks: 1.0.0
     globalSecurityFlattening: 1.0.0
-    globalServerURLs: 3.1.0
-    groups: 3.0.0
-    methodArguments: 1.0.2
-    nameOverrides: 3.0.1
-    nullables: 1.0.1
-    responseFormat: 1.0.1
-    retries: 3.0.2
-    sdkHooks: 1.0.1
-    unions: 3.0.4
+    globalServerURLs: 3.2.1
+    groups: 3.0.1
+    methodArguments: 1.1.1
+    nameOverrides: 3.0.3
+    nullables: 1.0.2
+    responseFormat: 1.1.0
+    retries: 3.1.2
+    sdkHooks: 1.3.0
+    unions: 3.1.9
+trackedFiles:
+  .devcontainer/README.md:
+    id: b170c0f184ac
+    last_write_checksum: sha1:e09ab5bd616ae1b3065c1a63e5c8e9dd86f3c940
+    pristine_git_object: d7be6824760cf3fa057b3f1b9a20f1f779f1c39e
+  .devcontainer/devcontainer.json:
+    id: b34062a34eb1
+    last_write_checksum: sha1:fbbce5654b8990b172a9ffe841d7635cd51c495b
+    pristine_git_object: 7e67af9f5b5aeed56bab8dd84f75d3729df3ada1
+  .devcontainer/setup.sh:
+    id: 5f1dfbfeb8eb
+    last_write_checksum: sha1:72aa76a8a8f934f2edda297bdabce5d508c9b7bf
+    pristine_git_object: 24dae8d8bc4cb4c19534f4d99c10d34aa1759aeb
+  .gitattributes:
+    id: 24139dae6567
+    last_write_checksum: sha1:53134de3ada576f37c22276901e1b5b6d85cd2da
+    pristine_git_object: 4d75d59008e4d8609876d263419a9dc56c8d6f3a
+  .vscode/settings.json:
+    id: 89aa447020cd
+    last_write_checksum: sha1:f84632c81029fcdda8c3b0c768d02b836fc80526
+    pristine_git_object: 8d79f0abb72526f1fb34a4c03e5bba612c6ba2ae
+  USAGE.md:
+    id: 3aed33ce6e6f
+    last_write_checksum: sha1:f8a87555028ae837aacce9850bb1f4664b4541a7
+    pristine_git_object: 44d11fecff596d9cef05aaa385752b36990768fe
+  docs/models/asroptions.md:
+    id: 1b50c812bd06
+    last_write_checksum: sha1:1f4f93f86fb5e0ded8e33615f02ee899c8a79038
+    pristine_git_object: 8404a38f8f56f7a23a027ac8151e9ca1be1bfe1b
+  docs/models/audio.md:
+    id: 197ec2b1424a
+    last_write_checksum: sha1:ab26c7061da94740d2913c753226e4ab4416659e
+    pristine_git_object: e3b336267fd649d2f8a9c58d0f2a4056c6234051
+  docs/models/one.md:
+    id: 69a5df93c480
+    last_write_checksum: sha1:395e67548cbf5cfbe90bf2c0bab19c764879cae5
+    pristine_git_object: 7f898a64dbb12f48f3b7472f05e06b1fb563dced
+  docs/models/security.md:
+    id: 452e4d4eb67a
+    last_write_checksum: sha1:71fdd7bbeb4eccce70c9b87e9631d708571e0f17
+    pristine_git_object: 0346db068b3d37366beee9c844a3643d6a332cee
+  docs/models/segments.md:
+    id: 9db9099aebc0
+    last_write_checksum: sha1:bbcebd2f73efa3360c79dc9a5b86c29b2188a163
+    pristine_git_object: 9695c67fdc6e22e9c1ba39141e00b6fbe2330bee
+  docs/models/three.md:
+    id: 4ce8887b0ec2
+    last_write_checksum: sha1:46217add45bfebd644b468abec0a23578d0b4771
+    pristine_git_object: 5e1ca2fb356898e37aa09f88b39eb8f63dd3aa5a
+  docs/models/transcribeaudioaudiosresponsebody.md:
+    id: 58ee0a73eb84
+    last_write_checksum: sha1:03de7ef9976e707702f271dde10fa8cab767ad86
+    pristine_git_object: 8d0b4e97eb86ad2d4a97d85e610ed2167f9c11d1
+  docs/models/transcribeaudiorequestbody.md:
+    id: 7aa4dc9d6bfa
+    last_write_checksum: sha1:20e053a26f5d996623674c8b1d34e2808c909673
+    pristine_git_object: fb177e8eca16d9ef12c859a5ddf6a96d67c2a6aa
+  docs/models/transcribeaudioresponse.md:
+    id: c05e9963fb8d
+    last_write_checksum: sha1:0094b9cd095faf3b093593267e5d5f22ed32d2b2
+    pristine_git_object: 2b3fb50ca5a1ab97bc893cfadec0b6f1996682f1
+  docs/models/transcribeaudioresponsebody.md:
+    id: 4c34f98c695c
+    last_write_checksum: sha1:baea4988be42519ab8b38a6742ea6f3e3757c470
+    pristine_git_object: a6ef17f668ad8a5473e0e118123a89186834a7d5
+  docs/models/two.md:
+    id: 3720b8efc931
+    last_write_checksum: sha1:eae9b598e46a0df75e304ecf5f432d5f7efd669c
+    pristine_git_object: a1b6c15b0487d84831293d0eb7b4de13dd10d2dd
+  docs/models/utils/retryconfig.md:
+    id: 4343ac43161c
+    last_write_checksum: sha1:562c0f21e308ad10c27f85f75704c15592c6929d
+    pristine_git_object: 69dd549ec7f5f885101d08dd502e25748183aebf
+  docs/models/whisperinput.md:
+    id: 8df8cf8ca379
+    last_write_checksum: sha1:8a2c2313726067ee16f839b9429749a04250f203
+    pristine_git_object: 1dc5fa614a87680c578d779ed7d27ca168545889
+  docs/models/whisperparams.md:
+    id: 4b1a06c15808
+    last_write_checksum: sha1:1a7b66e76676d6e206375f00409b346104bac166
+    pristine_git_object: e795875901f8f238770bead16f9ac9c7a982b85b
+  docs/sdks/audios/README.md:
+    id: e7b29f65f1b5
+    last_write_checksum: sha1:77292f2d9acc6b6c684f5f001de20a7572ab37bc
+    pristine_git_object: 8346e5fa0b4b08391bd2a33e7773be448b0f1ff1
+  poetry.toml:
+    id: a81ade82122a
+    last_write_checksum: sha1:2242305e29dc6921bdf5b200aea5d4bf67830230
+    pristine_git_object: cd3492ac9dc870fdcf23dbd94fd1d40cc753cc8e
+  py.typed:
+    id: 258c3ed47ae4
+    last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
+    pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
+  pylintrc:
+    id: 7ce8b9f946e6
+    last_write_checksum: sha1:efb10fa86b8a053964153923776de49acf135da0
+    pristine_git_object: 18f8c357a2206431626265d3943f66c4c1aa663f
+  pyproject.toml:
+    id: 5d07e7d72637
+    last_write_checksum: sha1:5897f679ddc08841ac22fd7d663c52987e4efd24
+    pristine_git_object: a08fa0e4f7f065d5e8f0a91e46c49203e0c05bef
+  scripts/prepare_readme.py:
+    id: e0c5957a6035
+    last_write_checksum: sha1:ecb5125a7b897b6dd7fad878b244941ccdf5511a
+    pristine_git_object: 8a620d9e8370e4402efdcbd3cc3ec872260d6c18
+  scripts/publish.sh:
+    id: fe273b08f514
+    last_write_checksum: sha1:b31bafc19c15ab5ea925fdf8d5d4adce2b115a63
+    pristine_git_object: 2a3ead70ccc6228cbae1c5c8a319b1399f3804ea
+  src/baseten/__init__.py:
+    id: 5f6ef1ec084e
+    last_write_checksum: sha1:eec86b555287a1f966479167defba81fe37be83f
+    pristine_git_object: d028dd22db25a8dfa0f8c44641ceed256e9d9e46
+  src/baseten/_hooks/__init__.py:
+    id: 59d77eddc90f
+    last_write_checksum: sha1:45a380490e968d8d95994dd97554ac60eeb6ae60
+    pristine_git_object: e763be4b171bbcf9c16caeaf381f8c92ce8d8e6e
+  src/baseten/_hooks/sdkhooks.py:
+    id: 547c34566734
+    last_write_checksum: sha1:a941057b6628143ed987ae7c30e36842a114b532
+    pristine_git_object: 4fa23c96eb2d605d2f2305a49520c41a05d26ef9
+  src/baseten/_hooks/types.py:
+    id: 0a3343667d15
+    last_write_checksum: sha1:c70b129c012906b6f16ce1a27ef9dfcce48fc9ae
+    pristine_git_object: 2361106320fff24f4914e6916e047059c7cf4534
+  src/baseten/_version.py:
+    id: f5d92bbdb09b
+    last_write_checksum: sha1:a75d8a401aacf63a3d2fda1dee37b49e20c3eb35
+    pristine_git_object: a09d75a6fd7d9056e4097d7e0ea8a2a2e40705cd
+  src/baseten/audios.py:
+    id: 158641a1c192
+    last_write_checksum: sha1:3312c4dde2a58ea904f6cf85ed03176fffc8d0de
+    pristine_git_object: 489015d6f388d426bee62e0151a67dd2fbad3c44
+  src/baseten/basesdk.py:
+    id: 1c1d2bcb38a2
+    last_write_checksum: sha1:fead23d0fbd8fdaf2550e1f37bdac345c7b92b19
+    pristine_git_object: e0d1362b25ad7e996d5bbbbd8d12026c57c5c45d
+  src/baseten/httpclient.py:
+    id: 4c0f0cb66812
+    last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
+    pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
+  src/baseten/models/__init__.py:
+    id: 89511266085a
+    last_write_checksum: sha1:2e644a90ee34cd971dfc8a5cf75a07edfe11d0a5
+    pristine_git_object: 97b7d08a72a1404b9ec19454c9f99397b06bcd7b
+  src/baseten/models/apierror.py:
+    id: bdd9745ca0d2
+    last_write_checksum: sha1:57395584d980f2ba9c978915c0bcbddda4983674
+    pristine_git_object: a3f1f754464664f39bc1f388f691f1b73a8a6614
+  src/baseten/models/basetenerror.py:
+    id: 0235a1c08a6a
+    last_write_checksum: sha1:a4d91829188b3db3a2c35beb48b45d8a0dbe8973
+    pristine_git_object: e5b56e0dd283d7bc7a9d12c144625b83760eed78
+  src/baseten/models/no_response_error.py:
+    id: 6b08102552a6
+    last_write_checksum: sha1:7f326424a7d5ae1bcd5c89a0d6b3dbda9138942f
+    pristine_git_object: 1deab64bc43e1e65bf3c412d326a4032ce342366
+  src/baseten/models/responsevalidationerror.py:
+    id: 6f95982fab90
+    last_write_checksum: sha1:0a5d92155daabc679eb04093ba11b10f7cd42879
+    pristine_git_object: 7494851e377fddb2d5aca647b2627e83fb9193fc
+  src/baseten/models/security.py:
+    id: 614aee2078a0
+    last_write_checksum: sha1:3ea12267389c7b9343a24498696dd98ff7971de3
+    pristine_git_object: 04adf26a473548a0bbf0b701bf5bf679cc9d2387
+  src/baseten/models/transcribeaudioop.py:
+    id: 2e789bb41f01
+    last_write_checksum: sha1:32ca4d7877535b7725ca582851dfb03ffc308262
+    pristine_git_object: d8ddf259727428dd5ad2308a50ae2d80c76e9335
+  src/baseten/py.typed:
+    id: 4524345ebc34
+    last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
+    pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
+  src/baseten/sdk.py:
+    id: 5b64003a04ff
+    last_write_checksum: sha1:e5da3413600b95cfb3019945f82ec012594284dc
+    pristine_git_object: 86dee04d9fc036f8dc0847fef519504777e4b127
+  src/baseten/sdkconfiguration.py:
+    id: a4ddb5bad932
+    last_write_checksum: sha1:9b81b56b0351c8379c873ecfb9cb909f17a1db9e
+    pristine_git_object: d72ff797066274e9b79d9e2dd82ae4968985542e
+  src/baseten/types/__init__.py:
+    id: 2142568371c1
+    last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
+    pristine_git_object: faa268137bc01c9d08cfadc4797017db48747a96
+  src/baseten/types/base64fileinput.py:
+    id: b75caceba509
+    last_write_checksum: sha1:1522687ae3398374c35710cad993a6e82b5ab99d
+    pristine_git_object: 862566fe2b1db830276b390e136e65090e5963d2
+  src/baseten/types/basemodel.py:
+    id: efb4216afd5b
+    last_write_checksum: sha1:10d84aedeb9d35edfdadf2c3020caa1d24d8b584
+    pristine_git_object: a9a640a1a7048736383f96c67c6290c86bf536ee
+  src/baseten/utils/__init__.py:
+    id: 00f39380d7e8
+    last_write_checksum: sha1:527db7a6c93948ecdec6a33f56b6551ae44f0180
+    pristine_git_object: c48a36ca3d6e47e384b133bc0bcb482c6d8589b9
+  src/baseten/utils/annotations.py:
+    id: 0a380fedf227
+    last_write_checksum: sha1:a4824ad65f730303e4e1e3ec1febf87b4eb46dbc
+    pristine_git_object: 12e0aa4f1151bb52474cc02e88397329b90703f6
+  src/baseten/utils/datetimes.py:
+    id: b81abd0ba9b4
+    last_write_checksum: sha1:fa47d54c549ff9b95496ce91930fadfb04a36be9
+    pristine_git_object: adad24762cf452d137abe94fda0fd26224cef593
+  src/baseten/utils/dynamic_imports.py:
+    id: 655ae5cf433b
+    last_write_checksum: sha1:a1940c63feb8eddfd8026de53384baf5056d5dcc
+    pristine_git_object: 673edf82a97d0fea7295625d3e092ea369a36b79
+  src/baseten/utils/enums.py:
+    id: bd4a49b253e4
+    last_write_checksum: sha1:bc8c3c1285ae09ba8a094ee5c3d9c7f41fa1284d
+    pristine_git_object: 3324e1bc2668c54c4d5f5a1a845675319757a828
+  src/baseten/utils/eventstreaming.py:
+    id: 9f4526840c9c
+    last_write_checksum: sha1:7d1dc68f8b48486ab646653aa05cc38752e1f912
+    pristine_git_object: a8d4fe5cc88d3c7337339e1b36a61bbf7ca8c4eb
+  src/baseten/utils/forms.py:
+    id: 9cec173891a5
+    last_write_checksum: sha1:a971cdb120ad3d416d296d5d0ad89e4808350a7f
+    pristine_git_object: fdf0dc9b2a67bca773eefe6b471498cccaa83424
+  src/baseten/utils/headers.py:
+    id: a3fb5ddeb498
+    last_write_checksum: sha1:7c6df233ee006332b566a8afa9ce9a245941d935
+    pristine_git_object: 37864cbbbc40d1a47112bbfdd3ba79568fc8818a
+  src/baseten/utils/logger.py:
+    id: 65dd12c2fda9
+    last_write_checksum: sha1:5b697d708763efd69b6f69399e16a3f61b6bed4c
+    pristine_git_object: 8525e9b41ed768bd480d2ac59b95caaf47900d78
+  src/baseten/utils/metadata.py:
+    id: 79da7bec13dd
+    last_write_checksum: sha1:e703e5cbb5255144aacf86898d1420529afaaff8
+    pristine_git_object: 5abddd588837ac297050ca3b543627faadb350a9
+  src/baseten/utils/queryparams.py:
+    id: f9edd0592194
+    last_write_checksum: sha1:b94c3f314fd3da0d1d215afc2731f48748e2aa59
+    pristine_git_object: c04e0db82b68eca041f2cb2614d748fbac80fd41
+  src/baseten/utils/requestbodies.py:
+    id: da5f2e38ce68
+    last_write_checksum: sha1:e1fef575283b7fe7fe2ad392dbbb3fb105309124
+    pristine_git_object: 591415af8e64baa410627b507d2740afb5387d13
+  src/baseten/utils/retries.py:
+    id: a645dd482ae4
+    last_write_checksum: sha1:251e4dd969bb6c06025afe1bad1b5035e94c2060
+    pristine_git_object: 406c1e7c36c7a4fa4fb48bb567d254e2803e1792
+  src/baseten/utils/security.py:
+    id: 3a23cb3f8155
+    last_write_checksum: sha1:2e182d0b5d1bcedae5e4c74c4c49495aacc878f6
+    pristine_git_object: 8ae5caf1c9a11d424c25325d613af2ee68982ac3
+  src/baseten/utils/serializers.py:
+    id: a0604ee0a304
+    last_write_checksum: sha1:7485f1425b0661fd84836186570df90207eec6af
+    pristine_git_object: 1031ed930bad5ece220cf7416a56c29f40f0588b
+  src/baseten/utils/unmarshal_json_response.py:
+    id: 7769d1eb8d7d
+    last_write_checksum: sha1:47c9d0424f8325158ba03666847cd9d8cdff436a
+    pristine_git_object: 375b752c62cfa83ef8f343307af62715ef63ca58
+  src/baseten/utils/url.py:
+    id: 0f39bf8e7c62
+    last_write_checksum: sha1:6479961baa90432ca25626f8e40a7bbc32e73b41
+    pristine_git_object: c78ccbae426ce6d385709d97ce0b1c2813ea2418
+  src/baseten/utils/values.py:
+    id: f67bd573c223
+    last_write_checksum: sha1:65e1ee8607767a4fc1ae7a55c74d77a23ab3cef1
+    pristine_git_object: ac217f473c5d52a454a2979b3eb35e66175d365c
+examples:
+  transcribeAudio:
+    speakeasy-default-transcribe-audio:
+      requestBody:
+        application/json: {"whisper_input": {"audio": {"url": "https://purple-cafe.net"}}}
+      responses:
+        "200":
+          application/json: {}
+        default:
+          application/json: {}
+examplesVersion: 1.0.2
+generatedTests: {}
+releaseNotes: |
+  ## Python SDK Changes:
+  * `baseten.audios.transcribe()`: **Added**
+  * `baseten.transcribe_audio()`: **Removed** (Breaking ⚠️)
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -92,10 +378,3 @@ generatedFiles:
   - src/baseten/utils/serializers.py
   - src/baseten/utils/url.py
   - src/baseten/utils/values.py
-examples:
-  transcribeAudio:
-    speakeasy-default-transcribe-audio:
-      requestBody:
-        application/json: {"whisper_input": {"audio": {"audio_b64": "<value>"}}}
-examplesVersion: 1.0.0
-generatedTests: {}
