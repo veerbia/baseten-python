@@ -1,5 +1,4 @@
 # Audios
-(*audios*)
 
 ## Overview
 
@@ -14,9 +13,11 @@ Use this endpoint to transcribe audio. Provide your audio input (as a URL, Base6
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="transcribeAudio" method="post" path="/predict" -->
 ```python
 from baseten import Baseten
 import os
+
 
 with Baseten(
     api_key_auth=os.getenv("BASETEN_API_KEY_AUTH", ""),
@@ -24,7 +25,7 @@ with Baseten(
 
     res = b_client.audios.transcribe(whisper_input={
         "audio": {
-            "audio_b64": "<value>",
+            "url": "https://purple-cafe.net",
         },
     })
 
