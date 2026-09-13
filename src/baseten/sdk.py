@@ -7,17 +7,24 @@ from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
 from baseten import models, utils
 from baseten._hooks import SDKHooks
-from baseten.audios import Audios
 from baseten.types import OptionalNullable, UNSET
 import httpx
-from typing import Any, Callable, Dict, List, Optional, Union, cast
+import importlib
+import sys
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union, cast
 import weakref
+
+if TYPE_CHECKING:
+    from baseten.audios import Audios
 
 
 class Baseten(BaseSDK):
     r"""Baseten Transcribe Audio API: API for transcribing audio using the Whisper model. This endpoint calls the production deployment of your model. When using the API as a chain, please refer to the respective endpoint."""
 
-    audios: Audios
+    audios: "Audios"
+    _sub_sdk_map = {
+        "audios": ("baseten.audios", "Audios"),
+    }
 
     def __init__(
         self,
@@ -26,8 +33,8 @@ class Baseten(BaseSDK):
         ] = None,
         model_id: Optional[str] = None,
         server_idx: Optional[int] = None,
-        server_url: Optional[str] = None,
         url_params: Optional[Dict[str, str]] = None,
+        server_url: Optional[str] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
@@ -46,15 +53,19 @@ class Baseten(BaseSDK):
         :param retry_config: The retry configuration to use for all supported methods
         :param timeout_ms: Optional request timeout applied to each operation in milliseconds
         """
+        client_supplied = True
         if client is None:
-            client = httpx.Client()
+            client = httpx.Client(follow_redirects=True)
+            client_supplied = False
 
         assert issubclass(
             type(client), HttpClient
         ), "The provided client must implement the HttpClient protocol."
 
+        async_client_supplied = True
         if async_client is None:
-            async_client = httpx.AsyncClient()
+            async_client = httpx.AsyncClient(follow_redirects=True)
+            async_client_supplied = False
 
         if debug_logger is None:
             debug_logger = get_default_logger()
@@ -64,7 +75,9 @@ class Baseten(BaseSDK):
         ), "The provided async_client must implement the AsyncHttpClient protocol."
 
         security: Any = None
-        if callable(api_key_auth):
+        if api_key_auth is None:
+            security = None
+        elif callable(api_key_auth):
             # pylint: disable=unnecessary-lambda-assignment
             security = lambda: models.Security(api_key_auth=api_key_auth())
         else:
@@ -83,7 +96,9 @@ class Baseten(BaseSDK):
             self,
             SDKConfiguration(
                 client=client,
+                client_supplied=client_supplied,
                 async_client=async_client,
+                async_client_supplied=async_client_supplied,
                 security=security,
                 server_url=server_url,
                 server_idx=server_idx,
@@ -92,32 +107,68 @@ class Baseten(BaseSDK):
                 timeout_ms=timeout_ms,
                 debug_logger=debug_logger,
             ),
+            parent_ref=self,
         )
 
         hooks = SDKHooks()
 
+        # pylint: disable=protected-access
+        self.sdk_configuration.__dict__["_hooks"] = hooks
+
         current_server_url, *_ = self.sdk_configuration.get_server_details()
         server_url, self.sdk_configuration.client = hooks.sdk_init(
-            current_server_url, self.sdk_configuration.client
+            current_server_url, client
         )
         if current_server_url != server_url:
             self.sdk_configuration.server_url = server_url
-
-        # pylint: disable=protected-access
-        self.sdk_configuration.__dict__["_hooks"] = hooks
 
         weakref.finalize(
             self,
             close_clients,
             cast(ClientOwner, self.sdk_configuration),
             self.sdk_configuration.client,
+            self.sdk_configuration.client_supplied,
             self.sdk_configuration.async_client,
+            self.sdk_configuration.async_client_supplied,
         )
 
-        self._init_sdks()
+    def dynamic_import(self, modname, retries=3):
+        for attempt in range(retries):
+            try:
+                return importlib.import_module(modname)
+            except KeyError:
+                # Clear any half-initialized module and retry
+                sys.modules.pop(modname, None)
+                if attempt == retries - 1:
+                    break
+        raise KeyError(f"Failed to import module '{modname}' after {retries} attempts")
 
-    def _init_sdks(self):
-        self.audios = Audios(self.sdk_configuration)
+    def __getattr__(self, name: str):
+        if name in self._sub_sdk_map:
+            module_path, class_name = self._sub_sdk_map[name]
+            try:
+                module = self.dynamic_import(module_path)
+                klass = getattr(module, class_name)
+                instance = klass(self.sdk_configuration, parent_ref=self)
+                setattr(self, name, instance)
+                return instance
+            except ImportError as e:
+                raise AttributeError(
+                    f"Failed to import module {module_path} for attribute {name}: {e}"
+                ) from e
+            except AttributeError as e:
+                raise AttributeError(
+                    f"Failed to find class {class_name} in module {module_path} for attribute {name}: {e}"
+                ) from e
+
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{name}'"
+        )
+
+    def __dir__(self):
+        default_attrs = list(super().__dir__())
+        lazy_attrs = list(self._sub_sdk_map.keys())
+        return sorted(list(set(default_attrs + lazy_attrs)))
 
     def __enter__(self):
         return self
@@ -126,9 +177,17 @@ class Baseten(BaseSDK):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.sdk_configuration.client is not None:
+        if (
+            self.sdk_configuration.client is not None
+            and not self.sdk_configuration.client_supplied
+        ):
             self.sdk_configuration.client.close()
+        self.sdk_configuration.client = None
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        if self.sdk_configuration.async_client is not None:
+        if (
+            self.sdk_configuration.async_client is not None
+            and not self.sdk_configuration.async_client_supplied
+        ):
             await self.sdk_configuration.async_client.aclose()
+        self.sdk_configuration.async_client = None
