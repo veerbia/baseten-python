@@ -7,3 +7,13 @@ Based on:
 - Speakeasy CLI 1.499.0 (2.520.0) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [python v0.2.0] .
+
+## 2026-10-24 04:11:46
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.803.2 (2.950.13) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.3.0] .
+### Releases
+- [PyPI v0.3.0] https://pypi.org/project/baseten/0.3.0 - .
